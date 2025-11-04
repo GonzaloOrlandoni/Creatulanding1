@@ -1,16 +1,28 @@
-# React + Vite
+# ⚛️ Entrega Coderhouse: CreatuLanding (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+_(Añade aquí una captura de pantalla del proyecto)_
 
-Currently, two official plugins are available:
+**Sitio en vivo:** [Añade el enlace de tu despliegue en Vercel o Netlify]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 OBJETIVO: Introducción a React y Componentización
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este proyecto sirvió como la primera aproximación a la librería **React**, utilizando **Vite** como entorno de desarrollo. Se enfocó en la configuración inicial del ambiente y la creación de la estructura base.
 
-## Expanding the ESLint configuration
+### Habilidades Demostradas:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Inicialización de Proyecto:** Configuración y manejo de ambientes modernos con Vite.
+- **Estructura de Carpetas:** Organización de archivos bajo los estándares de React.
+- **Componentización:** Creación y uso del componente principal de la aplicación.
+- **Herramientas:** Familiaridad con el _tooling_ moderno (Vite, ESLint).
+
+## 💻 STACK TÉCNICO
+
+- **Framework/Librería:** React
+- **Empaquetador:** Vite
+- **Lenguajes:** JavaScript, HTML, CSS
+
+---
+
+_Entrega realizada para el curso de React o Desarrollo Front-end en Coderhouse._
