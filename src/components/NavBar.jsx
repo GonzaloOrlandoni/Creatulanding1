@@ -1,41 +1,44 @@
 // src/components/NavBar.jsx
-import CartWidget from "./CartWidget"; // Importamos el CartWidget
+
+// 1. Importamos Link en lugar de <a>
+import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        {/* Logo/Marca de la tienda */}
-        <a className="navbar-brand" href="#">
+        {/* 2. El logo ahora es un Link a la ruta principal "/" */}
+        <Link className="navbar-brand" to="/">
           MiTienda
-        </a>
+        </Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Enlaces de navegación */}
+        {/* 3. Los enlaces de navegación ahora son Links a las categorías */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/categoria/procesadores">
                 Procesadores
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/categoria/placas-video">
                 Placas de Video
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/categoria/monitores">
                 Monitores
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Renderizado de CartWidget (como pide la consigna) */}
+        {/* El CartWidget se queda igual, no es un link aún */}
         <CartWidget />
       </div>
     </nav>
