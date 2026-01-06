@@ -9,9 +9,9 @@ import Checkout from "./components/Checkout";
 
 function App() {
   return (
-    /* 1. Proveedor de contexto para manejar el carrito globalmente  */
+    /* 1. Proveedor de contexto para manejar el carrito globalmente */
     <CartProvider>
-      {/* 2. Enrutador para navegación de SPA  */}
+      {/* 2. Enrutador para navegación de SPA */}
       <BrowserRouter>
         <NavBar />
 
@@ -19,16 +19,18 @@ function App() {
           {/* Listado completo de productos */}
           <Route path="/" element={<ItemListContainer />} />
 
-          {/* Catálogo filtrado por categoría  */}
+          {/* Catálogo filtrado por categoría */}
           <Route path="/category/:categoryId" element={<ItemListContainer />} />
 
-          {/* Detalle de un producto específico  */}
-          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+          {/* CORRECCIÓN: Cambiamos /item/ por /producto/
+            para que coincida con el Link de Item.jsx
+          */}
+          <Route path="/producto/:itemId" element={<ItemDetailContainer />} />
 
-          {/* Vista del carrito de compras  */}
+          {/* Vista del carrito de compras */}
           <Route path="/cart" element={<Cart />} />
 
-          {/* Formulario de finalización de compra  */}
+          {/* Formulario de finalización de compra */}
           <Route path="/checkout" element={<Checkout />} />
 
           {/* Ruta para manejar errores 404 */}

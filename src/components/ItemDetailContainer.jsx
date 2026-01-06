@@ -8,18 +8,18 @@ import Loader from "./Loader";
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { itemId } = useParams(); // Leemos el parámetro de la URL
+  const { itemId } = useParams(); //itemId viene de la URL de App.jsx
 
   useEffect(() => {
     setLoading(true);
 
-    // 1. Referencia a un documento específico
+    // Referencia al documento específico
     const docRef = doc(db, "items", itemId);
 
-    // 2. Ejecución con getDoc
     getDoc(docRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
+          // Seteamos el producto con su ID y sus datos de Firebase
           setProduct({ id: snapshot.id, ...snapshot.data() });
         }
       })
@@ -29,7 +29,7 @@ const ItemDetailContainer = () => {
 
   if (loading) return <Loader />;
 
-  return product ? <ItemDetail item={product} /> : <p>Producto no encontrado</p>;
+  return <div className="container mt-5">{product ? <ItemDetail {...product} /> : <h2>El producto no existe</h2>}</div>;
 };
 
 export default ItemDetailContainer;

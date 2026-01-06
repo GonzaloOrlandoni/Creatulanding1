@@ -80,3 +80,47 @@ button {
   text-decoration: underline;
   color: #007bff; /* Color azul para la categoría activa */
 }
+
+.categories {
+  display: flex;
+  gap: 30px; /* Esto les da espacio */
+  margin-right: 20px;
+  align-items: center;
+}
+
+.Option {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.ActiveOption {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: contain; /* Esto evita que la imagen se deforme */
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+/* Esto separará los links de la NavBar */
+.navbar a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
