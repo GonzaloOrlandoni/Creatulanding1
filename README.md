@@ -1,28 +1,24 @@
-# ⚛️ Entrega Coderhouse: CreatuLanding (React + Vite)
+# CreatuLanding - E-commerce de [Tu Rubro]
 
-_(Añade aquí una captura de pantalla del proyecto)_
+## Descripción
 
-**Sitio en vivo:** [Añade el enlace de tu despliegue en Vercel o Netlify]
+Proyecto Final para el curso de React de Coderhouse. Es una Single Page Application (SPA) que permite navegar por un catálogo de productos, gestionar un carrito de compras y finalizar pedidos con persistencia en tiempo real.
 
----
+## Tecnologías
 
-## 🎯 OBJETIVO: Introducción a React y Componentización
+- **React JS** (Vite)
+- **Firebase / Firestore** (Base de datos y órdenes)
+- **React Router Dom** (Navegación dinámica)
+- **Context API** (Estado global del carrito)
 
-Este proyecto sirvió como la primera aproximación a la librería **React**, utilizando **Vite** como entorno de desarrollo. Se enfocó en la configuración inicial del ambiente y la creación de la estructura base.
+## Funcionalidades
 
-### Habilidades Demostradas:
+- Catálogo dinámico con filtros por categoría.
+- Detalle de producto con lectura desde Firestore.
+- Carrito con validación de stock y cálculo de totales.
+- Checkout con generación de ID de orden de compra único.
 
-- **Inicialización de Proyecto:** Configuración y manejo de ambientes modernos con Vite.
-- **Estructura de Carpetas:** Organización de archivos bajo los estándares de React.
-- **Componentización:** Creación y uso del componente principal de la aplicación.
-- **Herramientas:** Familiaridad con el _tooling_ moderno (Vite, ESLint).
+## Instalación
 
-## 💻 STACK TÉCNICO
-
-- **Framework/Librería:** React
-- **Empaquetador:** Vite
-- **Lenguajes:** JavaScript, HTML, CSS
-
----
-
-_Entrega realizada para el curso de React o Desarrollo Front-end en Coderhouse._
+1. `npm install`
+2. `npm run dev`

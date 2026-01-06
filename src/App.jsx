@@ -1,45 +1,41 @@
-// ...otras importaciones...
-import ItemDetailContainer from "./components/ItemDetailContainer"; // <-- AÑADIR ESTA LÍNEA
-// src/App.jsx
-
-// 1. Importamos los componentes de React Router
-import { Routes, Route } from "react-router-dom";
-
-// 2. Importamos los componentes de nuestra app
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CartProvider from "./context/CartContext";
+// Componentes de UI
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
-// (Crearemos este componente en el próximo paso)
-// import ItemDetailContainer from './components/ItemDetailContainer';
-
-// Importamos el CSS
-import "./App.css";
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
-    <div>
-      {/* 3. El NavBar se muestra en TODAS las rutas */}
-      <NavBar />
+    /* 1. Proveedor de contexto para manejar el carrito globalmente  */
+    <CartProvider>
+      {/* 2. Enrutador para navegación de SPA  */}
+      <BrowserRouter>
+        <NavBar />
 
-      {/* 4. Definimos las rutas */}
-      <Routes>
-        {/* Ruta Raíz (Home) */}
-        <Route path="/" element={<ItemListContainer greeting="¡Bienvenidos a MiTienda!" />} />
+        <Routes>
+          {/* Listado completo de productos */}
+          <Route path="/" element={<ItemListContainer />} />
 
-        {/* Ruta de Categoría (Dinámica) */}
-        <Route path="/categoria/:idCategoria" element={<ItemListContainer greeting="Filtrado por categoría:" />} />
+          {/* Catálogo filtrado por categoría  */}
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
 
-        {/* Ruta de Detalle de Producto (Dinámica) */}
-        <Route path="/producto/:idProducto" element={<ItemDetailContainer />} />
-        <Route
-          path="*"
-          element={
-            <div className="container text-center mt-4">
-              <h1>Error 404: Página no encontrada</h1>
-            </div>
-          }
-        />
-      </Routes>
-    </div>
+          {/* Detalle de un producto específico  */}
+          <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+
+          {/* Vista del carrito de compras  */}
+          <Route path="/cart" element={<Cart />} />
+
+          {/* Formulario de finalización de compra  */}
+          <Route path="/checkout" element={<Checkout />} />
+
+          {/* Ruta para manejar errores 404 */}
+          <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

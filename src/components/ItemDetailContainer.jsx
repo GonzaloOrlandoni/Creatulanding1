@@ -1,60 +1,35 @@
-// ...otras importaciones...
-import ItemDetail from "./ItemDetail"; // <-- AÑADIR ESTA LÍNEA
-// src/components/ItemDetailContainer.jsx
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../data/products"; // Importamos la función
-
-// (Importaremos ItemDetail en el próximo paso)
-// import ItemDetail from './ItemDetail';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import ItemDetail from "./ItemDetail";
+import Loader from "./Loader";
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState(null); // Estado para UN solo producto
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { itemId } = useParams(); // Leemos el parámetro de la URL
 
-  // 1. useParams para obtener el ID de la URL
-  const { idProducto } = useParams();
-
-  // 2. useEffect para buscar ese producto
   useEffect(() => {
     setLoading(true);
 
-    getProductById(idProducto) // 3. Llamamos a la función con ese ID
-      .then((data) => {
-        setProduct(data); // Guardamos el producto encontrado
+    // 1. Referencia a un documento específico
+    const docRef = doc(db, "items", itemId);
+
+    // 2. Ejecución con getDoc
+    getDoc(docRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setProduct({ id: snapshot.id, ...snapshot.data() });
+        }
       })
-      .catch((error) => {
-        console.error("Error al buscar producto:", error);
-      })
-      .finally(() => {
-        setLoading(false); // Terminamos de cargar
-      });
-  }, [idProducto]); // 4. Dependencia: si cambia el ID, volvé a buscar
+      .catch((error) => console.error("Error al obtener detalle:", error))
+      .finally(() => setLoading(false));
+  }, [itemId]);
 
-  // 5. Renderizado condicional
-  if (loading) {
-    return (
-      <div className="container text-center mt-4">
-        <h2>Cargando detalle del producto...</h2>
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
 
-  if (!product) {
-    return (
-      <div className="container text-center mt-4">
-        <h2>Producto no encontrado</h2>
-      </div>
-    );
-  }
-
-  // 6. Si todo sale bien, mostramos los datos (por ahora en crudo)
-  return (
-    <div>
-      <ItemDetail {...product} />
-    </div>
-  );
+  return product ? <ItemDetail item={product} /> : <p>Producto no encontrado</p>;
 };
 
 export default ItemDetailContainer;
