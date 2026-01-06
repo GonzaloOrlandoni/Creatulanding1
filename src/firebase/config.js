@@ -1,18 +1,19 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"; // Importamos Firestore para el catálogo
 
-// Estos datos los sacas de la configuración de tu proyecto en Firebase Console
+// Tus credenciales actualizadas según tu captura
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "tu-id",
-  appId: "tu-app-id",
+  apiKey: "AIzaSyCjoqJdfYsnmFYD-v1Um8Z8nu5EZ6M5_po",
+  authDomain: "proyectofinal-orlandoni.firebaseapp.com",
+  projectId: "proyectofinal-orlandoni",
+  storageBucket: "proyectofinal-orlandoni.firebasestorage.app",
+  messagingSenderId: "780256390402",
+  appId: "1:780256390402:web:2c449fe354457aef26e61b",
+  measurementId: "G-D8M1LE0Q10",
 };
 
 // Inicializamos Firebase
 const app = initializeApp(firebaseConfig);
 
-// Exportamos la base de datos para usarla en los componentes
+// Exportamos la base de datos (db) para que ItemListContainer pueda usarla
 export const db = getFirestore(app);

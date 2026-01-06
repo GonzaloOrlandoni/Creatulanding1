@@ -63,3 +63,20 @@ button {
 .checkout-form button:hover {
   background-color: #218838;
 }
+
+.categories {
+  display: flex;
+  gap: 20px; /* Esto separa los enlaces */
+  margin-right: 20px;
+}
+
+.Option {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.ActiveOption {
+  text-decoration: underline;
+  color: #007bff; /* Color azul para la categoría activa */
+}
