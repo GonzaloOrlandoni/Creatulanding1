@@ -1,34 +1,30 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
-// Definimos el componente sin exportarlo directamente en la misma línea
-const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState([]);
 
-    const addItem = (item, quantity) => {
-        if (!isInCart(item.id)) {
-            setCart(prev => [...prev, { ...item, quantity }]);
-        }
-    };
+  const addItem = (item, quantity) => {
+    if (isInCart(item.id)) {
+      setCart(cart.map((prod) =>
+        prod.id === item.id ? { ...prod, quantity: prod.quantity + quantity } : prod
+      ));
+    } else {
+      setCart([...cart, { ...item, quantity }]);
+    }
+  };
 
-    const removeItem = (itemId) => {
-        setCart(prev => prev.filter(prod => prod.id !== itemId));
-    };
+  const isInCart = (id) => cart.some((prod) => prod.id === id);
+  const removeItem = (id) => setCart(cart.filter((prod) => prod.id !== id));
+  const clearCart = () => setCart([]);
+  const totalQuantity = () => cart.reduce((acc, prod) => acc + prod.quantity, 0);
+  const totalPrice = () => cart.reduce((acc, prod) => acc + prod.quantity * prod.price, 0);
 
-    const clearCart = () => setCart([]);
-
-    const isInCart = (itemId) => cart.some(prod => prod.id === itemId);
-
-    const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
-
-    const totalPrecio = cart.reduce((total, item) => total + (item.quantity * item.price), 0);
-
-    return (
-        <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, totalQuantity, totalPrecio }}>
-            {children}
-        </CartContext.Provider>
-    );
+  return (
+    <CartContext.Provider value={{ cart, addItem, removeItem, clearCart, totalQuantity, totalPrice }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
-
-export default CartProvider;

@@ -1,36 +1,35 @@
-// src/components/ItemDetail.jsx
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import ItemCount from "./ItemCount";
 
-import React from "react";
-import ItemCount from "./ItemCount"; // 1. Importamos el contador
+const ItemDetail = ({ id, name, img, description, price, stock }) => {  const [quantityAdded, setQuantityAdded] = useState(0);
+  const { addItem } = useContext(CartContext);
 
-// Recibimos todas las props del producto
-const ItemDetail = ({ name, img, category, description, price, stock }) => {
-  // 2. Función que se ejecutará cuando hagan clic en "Agregar al carrito"
   const handleOnAdd = (quantity) => {
-    console.log(`¡Se agregaron ${quantity} unidades de ${name} al carrito!`);
-    // (En el futuro, aquí llamarías a tu Context para agregar al carrito)
+    setQuantityAdded(quantity);
+    const item = { id, name, price };
+    addItem(item, quantity); // Agregamos al context global
   };
 
   return (
-    <div className="container mt-4">
-      <div className="row">
-        <div className="col-md-6">
-          <img src={img} alt={name} className="img-fluid rounded" />
-        </div>
-        <div className="col-md-6">
-          <h2>{name}</h2>
-          <p className="lead text-muted">Categoría: {category}</p>
-          <h4>Precio: ${price}</h4>
-          <p>{description}</p>
-          <hr />
-          <p>Stock disponible: {stock}</p>
+    <div className="row">
+      <div className="col-md-6">
+        <img src={img} alt={name} className="img-fluid" />
+      </div>
+      <div className="col-md-6">
+        <h2>{name}</h2>
+        <p>{description}</p>
+        <p>Precio: ${price}</p>
 
-          {/* 3. Renderizamos el ItemCount */}
+        {/* Renderizado condicional requerido por la consigna */}
+        {quantityAdded > 0 ? (
+          <Link to="/cart" className="btn btn-success">Finalizar compra</Link>
+        ) : (
           <ItemCount stock={stock} onAdd={handleOnAdd} />
-        </div>
+        )}
       </div>
     </div>
   );
 };
-
 export default ItemDetail;

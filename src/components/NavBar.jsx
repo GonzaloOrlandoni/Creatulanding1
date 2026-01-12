@@ -3,23 +3,16 @@ import CartWidget from "./CartWidget";
 
 const NavBar = () => {
   return (
-    <nav className="navbar">
-      <Link to="/">
-        <h1>Mi E-commerce</h1>
-      </Link>
-
-      <div className="categories">
-        {/* isActive es una propiedad de NavLink que nos permite aplicar estilos si la ruta coincide */}
-        <NavLink to="/category/remeras" className={({ isActive }) => (isActive ? "ActiveOption" : "Option")}>
-          Remeras
-        </NavLink>
-        <NavLink to="/category/pantalones" className={({ isActive }) => (isActive ? "ActiveOption" : "Option")}>
-          Pantalones
-        </NavLink>
-      </div>
-
-      <CartWidget />
-    </nav>
+<nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div className="container">
+    <Link className="navbar-brand" to="/">Mi Tienda</Link>
+    <div className="navbar-nav mx-auto">
+      <Link className="nav-link mx-2" to="/categoria/remeras">Remeras</Link>
+      <Link className="nav-link mx-2" to="/categoria/pantalones">Pantalones</Link>
+    </div>
+    <CartWidget />
+  </div>
+</nav>
   );
 };
 
